@@ -88,5 +88,9 @@ class TikTokDriver implements SyncDriverInterface
     {
         // Placeholder for future implementation
     }
+    public function boot(): void
+    {
+    }
 }
+
 
