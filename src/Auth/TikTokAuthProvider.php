@@ -2,7 +2,7 @@
 
 namespace Anibalealvarezs\TikTokHubDriver\Auth;
 
-use Anibalealvarezs\ApiSkeleton\Interfaces\AuthProviderInterface;
+use Anibalealvarezs\ApiDriverCore\Interfaces\AuthProviderInterface;
 
 class TikTokAuthProvider implements AuthProviderInterface
 {
