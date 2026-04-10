@@ -2,13 +2,13 @@
 
 namespace Anibalealvarezs\TikTokHubDriver\Drivers;
 
-use Anibalealvarezs\ApiSkeleton\Interfaces\SyncDriverInterface;
-use Anibalealvarezs\ApiSkeleton\Interfaces\AuthProviderInterface;
-use Anibalealvarezs\ApiSkeleton\Traits\HasUpdatableCredentials;
+use Anibalealvarezs\ApiDriverCore\Interfaces\SyncDriverInterface;
+use Anibalealvarezs\ApiDriverCore\Interfaces\AuthProviderInterface;
+use Anibalealvarezs\ApiDriverCore\Traits\HasUpdatableCredentials;
 use Symfony\Component\HttpFoundation\Response;
 use Psr\Log\LoggerInterface;
 use DateTime;
-use Anibalealvarezs\ApiSkeleton\Interfaces\SeederInterface;
+use Anibalealvarezs\ApiDriverCore\Interfaces\SeederInterface;
 
 class TikTokDriver implements SyncDriverInterface
 {
@@ -90,6 +90,20 @@ class TikTokDriver implements SyncDriverInterface
     }
     public function boot(): void
     {
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getAssetPatterns(): array
+    {
+        return [
+            'tiktok_profile' => [
+                'prefix' => 'tk:profile',
+                'hostnames' => ['tiktok.com'],
+                'url_id_regex' => null
+            ]
+        ];
     }
 }
 
