@@ -34,6 +34,16 @@ class TikTokDriver implements SyncDriverInterface
         return [];
     }
 
+    /**
+     * Get the display label for the channel.
+     * 
+     * @return string
+     */
+    public static function getChannelLabel(): string
+    {
+        return 'TikTok';
+    }
+
     public static function getCommonConfigKey(): ?string
     {
         return null;
