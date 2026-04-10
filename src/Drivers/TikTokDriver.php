@@ -44,6 +44,16 @@ class TikTokDriver implements SyncDriverInterface
         return 'TikTok';
     }
 
+    /**
+     * Get the routes served by this driver.
+     * 
+     * @return array
+     */
+    public static function getRoutes(): array
+    {
+        return [];
+    }
+
     public static function getCommonConfigKey(): ?string
     {
         return null;
