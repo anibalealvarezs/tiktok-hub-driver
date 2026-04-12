@@ -12,6 +12,7 @@ use Anibalealvarezs\ApiDriverCore\Interfaces\SeederInterface;
 
 class TikTokDriver implements SyncDriverInterface
 {
+    use \Anibalealvarezs\ApiDriverCore\Traits\SyncDriverTrait;
 
     /**
      * Store credentials for this driver.
@@ -181,6 +182,16 @@ class TikTokDriver implements SyncDriverInterface
             ]
         ];
     }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getPageTypes(): array
+    {
+        return [
+            'tiktok_profile' => 'TikTok Profile'
+        ];
+  }
 
     /**
      * @inheritdoc
