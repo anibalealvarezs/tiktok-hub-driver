@@ -158,7 +158,8 @@ class TikTokDriver implements SyncDriverInterface
         return \Anibalealvarezs\ApiDriverCore\Services\ConfigSchemaRegistryService::hydrate(
             $this->getChannel(),
             'global',
-            $config
+            $config,
+            $this->getConfigSchema()
         );
     }
 
