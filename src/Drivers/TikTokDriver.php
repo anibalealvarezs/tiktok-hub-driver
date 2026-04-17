@@ -115,7 +115,14 @@ class TikTokDriver implements SyncDriverInterface
         return 'tiktok';
     }
 
-    public function sync(DateTime $startDate, DateTime $endDate, array $config = []): Response
+    public function sync(
+        DateTime $startDate,
+        DateTime $endDate,
+        array $config = [],
+        ?callable $shouldContinue = null,
+        ?callable $identityMapper = null
+    ): Response
+
     {
         if ($this->logger) {
             $this->logger->info("TikTokDriver (Modular): No native implementation yet. Sync skipped.");
@@ -201,7 +208,8 @@ class TikTokDriver implements SyncDriverInterface
     /**
      * @inheritdoc
      */
-    public function initializeEntities(mixed $entityManager, array $config = []): array
+    public function initializeEntities(array $config = []): array
+
     {
         return ['initialized' => 0, 'skipped' => 0];
     }
@@ -209,7 +217,8 @@ class TikTokDriver implements SyncDriverInterface
     /**
      * @inheritdoc
      */
-    public function reset(mixed $entityManager, string $mode = 'all', array $config = []): array
+    public function reset(string $mode = 'all', array $config = []): array
+
     {
         return ['cleared' => 0, 'mode' => $mode];
     }
