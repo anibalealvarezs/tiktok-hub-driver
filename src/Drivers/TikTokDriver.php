@@ -9,10 +9,24 @@ use Symfony\Component\HttpFoundation\Response;
 use Psr\Log\LoggerInterface;
 use DateTime;
 use Anibalealvarezs\ApiDriverCore\Interfaces\SeederInterface;
+use Anibalealvarezs\ApiDriverCore\Interfaces\CanonicalMetricDictionaryProviderInterface;
+use Anibalealvarezs\ApiDriverCore\Interfaces\AggregationProfileProviderInterface;
+use Anibalealvarezs\ApiDriverCore\Classes\AggregationProfileTemplates;
 
-class TikTokDriver implements SyncDriverInterface
+class TikTokDriver implements SyncDriverInterface, CanonicalMetricDictionaryProviderInterface, AggregationProfileProviderInterface
 {
     use \Anibalealvarezs\ApiDriverCore\Traits\SyncDriverTrait;
+
+    public static function getAggregationProfiles(): array
+    {
+        return [
+            AggregationProfileTemplates::adsHierarchyProfile(
+                channel: 'tiktok',
+                key: 'tiktok_ads',
+                label: 'TikTok Ads Performance'
+            ),
+        ];
+    }
 
     /**
      * Store credentials for this driver.
@@ -203,6 +217,29 @@ class TikTokDriver implements SyncDriverInterface
             'tiktok_profile' => 'TikTok Profile'
         ];
   }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getCanonicalMetricDictionary(): array
+    {
+        return [
+            'spend' => ['spend'],
+            'clicks' => ['clicks'],
+            'impressions' => ['impressions'],
+            'reach' => ['reach'],
+            'conversions' => ['conversion'],
+            'roas_purchase' => ['roas'],
+            'cpc' => ['cpc'],
+            'cpm' => ['cpm'],
+            'ctr' => ['ctr'],
+        ];
+    }
+
+    public static function getPlatformEntityIdField(): string
+    {
+        return 'advertiser_id';
+    }
 
     /**
      * @inheritdoc
